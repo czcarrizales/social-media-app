@@ -1,8 +1,11 @@
 .post-container {
     border: 1px solid red;
-    display: flex;
     margin-top: 2em;
     border-radius: 20px;
+}
+
+.post-top {
+    display: flex;
 }
 
 .post-content {
@@ -23,4 +26,16 @@
 
 .post-likes div {
     border: 1px solid red;
+}
+
+.post-comments {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid purple;
+}
+
+.single-comment {
+    text-align: center;
+    border: 1px solid gray;
+    margin-top: .5em;
 }

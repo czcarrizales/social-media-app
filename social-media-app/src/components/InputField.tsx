@@ -16,9 +16,11 @@ const InputField = ({posts, setPosts}) => {
           id: posts.length + 1,
           content: content,
           likes: 0,
-          dislikes: 0
+          dislikes: 0,
+          comments: []
         }
         setPosts([...posts, newPost])
+        setContent('')
       }
    
   return (
