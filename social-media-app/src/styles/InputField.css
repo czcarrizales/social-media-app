@@ -1,0 +1,17 @@
+.input-field-container {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field-container textarea {
+    border: 1px solid yellow;
+    padding: 2em;
+}
+
+.input-field-container button {
+    border: 1px solid green;
+    padding: 1em;
+    background-color: blue;
+    color: white;
+}
