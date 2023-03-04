@@ -1,0 +1,26 @@
+.post-container {
+    border: 1px solid red;
+    display: flex;
+    margin-top: 2em;
+    border-radius: 20px;
+}
+
+.post-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid yellow;
+    width: 80%;
+}
+
+.post-likes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid ;
+    width: 20%;
+}
+
+.post-likes div {
+    border: 1px solid red;
+}
