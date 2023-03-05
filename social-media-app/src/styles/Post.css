@@ -1,7 +1,23 @@
 .post-container {
-    border: 1px solid red;
     margin-top: 2em;
     border-radius: 20px;
+}
+
+.post-container h2, a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.post-container h2:hover, a:hover {
+    color: blue;
+}
+
+.post-details {
+    border-radius: 20px;
+    background-color: white;
+    padding: 1em;
 }
 
 .post-top {
@@ -10,9 +26,9 @@
 
 .post-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid yellow;
     width: 80%;
 }
 
@@ -20,22 +36,42 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    border: 1px solid ;
     width: 20%;
 }
 
 .post-likes div {
-    border: 1px solid red;
+   
 }
 
 .post-comments {
     display: flex;
     flex-direction: column;
-    border: 1px solid purple;
+    align-items: flex-end;
+}
+
+.add-comment-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
+}
+
+.add-comment-container input {
+    border: none;
+    border: 1px solid gray;
+}
+
+.add-comment-container button {
+    background-color: rgb(255, 252, 74);
+    border: none;
+    padding: .5em 1em;
+    border-radius: 5px;
 }
 
 .single-comment {
     text-align: center;
-    border: 1px solid gray;
     margin-top: .5em;
+    border-radius: 20px;
+    background-color: white;
+    padding: .25em;
+    width: 80%;
 }

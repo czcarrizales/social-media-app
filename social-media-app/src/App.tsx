@@ -6,31 +6,54 @@ import Navbar from './components/Navbar'
 import Post from './components/Post'
 import Profile from './components/Profile'
 import Settings from './components/Settings'
+import UserDetails from './components/UserDetails'
 
 function App() {
 
   const [posts, setPosts] = useState([
     {
       id: 1,
-      content: 'helloooooo',
+      userId: 1,
+      content: 'I just got the world record in Donkey Kong!',
       likes: 0,
       dislikes: 0,
-      comments: ['Good!', 'Eh whatever.']
+      comments: ['Good for you!', 'Fake.', 'I do not believe you.', 'Show proof!']
     },
     {
       id: 2,
-      content: 'how is the water',
+      userId: 2,
+      content: 'I just got a new dog.',
       likes: 0,
       dislikes: 0,
-      comments: []
+      comments: ['I love dogs', 'What kind of dog?', 'Fish are better.', 'Just make sure to get their shots on time!', 'Bark.']
     }
   ])
   const [userData, setUserData] = useState({
-    name: 'Chazz',
+    name: 'User',
+    userId: 7,
     image: 'images/doggy.jpg',
     likes: ['gaming', 'coding', 'reading', 'running'],
-    dislikes: ['spiders', 'procrastinating', 'mean people', 'tequila']
+    dislikes: ['spiders', 'procrastinating', 'big ol bullies', 'tequila']
   })
+
+ 
+
+
+  const [users, setUsers] = useState([
+    {
+      userId: 1,
+      name: 'George'
+    },
+    {
+      userId: 2,
+      name: 'Lily'
+    },
+    {
+      userId: 7,
+      name: 'User'
+    }
+  ])
+
   const [commentText, setCommentText] = useState('')
 
   useEffect(() => {
@@ -68,7 +91,7 @@ function App() {
     // to pass the value from child into the function. What I mean is
     // just pass the function, you don't need to preload the arguments
     // or paramaters from the parent
-    
+
     // Getting the index of the current post by it's id
     const currentPostIndex = posts.findIndex((post) => post.id === id)
     // Creating a copy of the posts
@@ -86,6 +109,27 @@ function App() {
     setPosts(newArray)
   }
 
+  function deletePost(id) {
+    setPosts(posts.filter(post => post.id !== id))
+  }
+
+  function editPost(id, value) {
+    const editedPost = posts.map((post) => {
+      console.log(post)
+    })
+    setPosts(posts.map(post => {
+      if (post.id === id) {
+        return {...post, content: value}
+      } else {
+        return post
+      }
+    }))
+  }
+
+  function deleteLike(value) {
+    
+  }
+
   return (
     <BrowserRouter>
     <Navbar/>
@@ -93,14 +137,18 @@ function App() {
       <Route path='/' element={(
         <div className="App">
       
-      <InputField posts={posts} setPosts={setPosts}/>
+      <InputField posts={posts} setPosts={setPosts} userData={userData}/>
       {posts.map((post) => {
-        return <Post id={post.id} content={post.content} likes={post.likes} dislikes={post.dislikes} comments={post.comments} upvote={() => upvote(post.id)} downvote={() => downvote(post.id)} addComment={addComment} setCommentText={setCommentText} commentText={commentText} />
+        return <Post id={post.id} userId={post.userId} content={post.content} likes={post.likes} dislikes={post.dislikes} comments={post.comments} upvote={() => upvote(post.id)} downvote={() => downvote(post.id)} addComment={addComment} setCommentText={setCommentText} commentText={commentText} users={users} userData={userData} deletePost={deletePost} editPost={editPost} />
       })}
     </div>
       )} />
       <Route path='profile' element={<Profile userData={userData} setUserData={setUserData} />} />
       <Route path='settings' element={<Settings/>} />
+      <Route path='users'>
+        <Route path=':id' element={<UserDetails users={users}/>}/>
+      </Route>
+      
     </Routes>
     
     </BrowserRouter>

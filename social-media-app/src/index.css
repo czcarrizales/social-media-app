@@ -7,7 +7,7 @@
 }
 
 body {
-  border: 1px solid black;
-  margin: 3em;
+  margin: 0 3em;
   min-height: 100vh;
+  background-color: hwb(0 90% 10%);
 }

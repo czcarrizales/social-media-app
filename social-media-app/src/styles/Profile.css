@@ -1,5 +1,6 @@
 .profile-container {
     text-align: center;
+    background-color: white;
     border: 1px solid red;
 }
 
@@ -9,13 +10,19 @@
 }
 
 .profile-likes {
-    border: 1px solid green;
     width: 50%;
 }
 
+.all-likes p {
+    margin-top: 1em;
+}
+
 .profile-dislikes {
-    border: 1px solid blue;
     width: 50%;
+}
+
+.all-dislikes p {
+    margin-top: 1em;
 }
 
 .profile-container img {
@@ -23,8 +30,10 @@
 }
 
 .profile-container .edit-name {
-    width: 100%;
-    border: 1px solid rgb(0, 64, 68);
+    width: 15%;
+    border: none;
+    border-radius: 5px;
+    padding: .2em;
     background-color: brown;
     color: white;
 }

@@ -9,6 +9,7 @@ const Profile = ({userData, setUserData}) => {
 
     const [editingName, setEditingName] = useState(false)
     const [nameEdit, setNameEdit] = useState(userData.name)
+    const [editingLikes, setEditingLikes] = useState(false)
 
     function handleNameEdit(e) {
         setNameEdit(e.target.value)
@@ -18,6 +19,8 @@ const Profile = ({userData, setUserData}) => {
         setUserData({...userData, name: nameEdit})
         setEditingName(false)
     }
+
+    console.log(editingLikes)
 
   return (
     <div className='profile-container'>
@@ -32,14 +35,19 @@ const Profile = ({userData, setUserData}) => {
         <div className='profile-details'>
         <div className='profile-likes'>
             <h2>Likes</h2>
+            <button onClick={() => setEditingLikes(!editingLikes)}>edit likes</button>
             {userData.likes.map((like) => {
-                return <div>{like}</div>
+                return <div className='all-likes'>
+                    <p>{like}</p>
+                    {editingLikes && <button onClick={deleteLike}>delete</button>}
+                </div>
             })}
         </div>
         <div className='profile-dislikes'>
             <h2>Dislikes</h2>
+            <button onClick={() => setEditingLikes(!editingLikes)}>edit likes</button>
             {userData.dislikes.map((dislike) => {
-            return <div>{dislike}</div>
+            return <div className='all-dislikes'><p>{dislike}</p></div>
         })}</div>
         </div>
         

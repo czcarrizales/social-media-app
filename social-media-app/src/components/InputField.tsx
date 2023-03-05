@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Post from "./Post";
 import '../styles/InputField.css'
 
-const InputField = ({posts, setPosts}) => {
+const InputField = ({posts, setPosts, userData}) => {
 
     const [content, setContent] = useState('')
 
@@ -14,6 +14,7 @@ const InputField = ({posts, setPosts}) => {
     function addPost() {
         const newPost = {
           id: posts.length + 1,
+          userId: userData.userId,
           content: content,
           likes: 0,
           dislikes: 0,
