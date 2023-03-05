@@ -1,6 +1,7 @@
 .input-field-container {
     display: flex;
     flex-direction: column;
+    margin-top: 2em;
 }
 
 .input-field-container textarea {
