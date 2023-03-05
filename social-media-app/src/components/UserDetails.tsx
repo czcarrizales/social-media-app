@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 
-const UserDetails = ({users}) => {
+interface Props {
+    users: {
+        userId: number;
+        name: string;
+    }[];
+}
+
+const UserDetails = ({users}:Props) => {
     const {id} = useParams()
     const [userDetail, setUserDetail] = useState({})
 

@@ -2,11 +2,37 @@ import React, { useState } from "react";
 import Post from "./Post";
 import '../styles/InputField.css'
 
-const InputField = ({posts, setPosts, userData}) => {
+interface Props {
+    posts: {
+        id: number;
+        userId: number;
+        content: string;
+        likes: number;
+        dislikes: number;
+        comments: string[];
+    }[];
+    setPosts: React.Dispatch<React.SetStateAction<{
+        id: number;
+        userId: number;
+        content: string;
+        likes: number;
+        dislikes: number;
+        comments: string[];
+    }[]>>;
+    userData: {
+        name: string;
+        userId: number;
+        image: string;
+        likes: string[];
+        dislikes: string[];
+    };
+}
+
+const InputField = ({posts, setPosts, userData}: Props) => {
 
     const [content, setContent] = useState('')
 
-    function handleChange(event) {
+    function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
         setContent(event.target.value)
         console.log(content)
     }

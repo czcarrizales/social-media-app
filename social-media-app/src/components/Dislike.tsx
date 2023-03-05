@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import '../styles/Dislike.css'
 
 interface Props {
     dislikes: number;
-    
+    downvote: MouseEventHandler<HTMLDivElement>;
 }
 
 const Dislike = ({dislikes, downvote}: Props) => {
