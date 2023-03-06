@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import InputField from './components/InputField'
@@ -28,7 +28,42 @@ function App() {
       comments: ['I love dogs', 'What kind of dog?', 'Fish are better.', 'Just make sure to get their shots on time!', 'Bark.']
     }
   ])
-  const [userData, setUserData] = useState({
+
+  
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+        case 'setName' :
+          return {...state, name: action.payload}
+        case 'addLike' :
+          return {...state, likes: [...state.likes, action.payload]}
+        case 'deleteLike' :
+          return {...state, likes: state.likes.filter((like) => {
+            return like !== action.payload
+          })}
+        case 'updateLike' :
+          return {...state, likes: state.likes.map((like, index) => {
+            if (index == action.payload.index) {
+              console.log(index)
+              console.log(action.payload.index)
+              console.log(action.payload.value)
+              return action.payload.value
+            } else {
+              return like
+            }
+          })}
+        case 'addDislike':
+          return {...state, dislikes: [...state.dislikes, action.payload]}
+        case 'deleteDislike':
+          return {...state, dislikes: state.dislikes.filter((dislike) => {
+            return dislike !== action.payload
+          })}
+        default:
+            return state
+    }
+}
+
+  const [userData, dispatchUserData] = useReducer(reducer, {
     name: 'User',
     userId: 7,
     image: 'images/doggy.jpg',
@@ -36,8 +71,7 @@ function App() {
     dislikes: ['spiders', 'procrastinating', 'big ol bullies', 'tequila']
   })
 
- 
-
+  
 
   const [users, setUsers] = useState([
     {
@@ -65,6 +99,11 @@ function App() {
   useEffect(() => {
     console.log('comment was changed')
   }, [commentText])
+
+  useEffect(() => {
+    console.log('user data changed.')
+    console.log(userData)
+  }, [userData])
 
   function upvote(id: number) {
     const currentPostIndex = posts.findIndex((post) => post.id === id)
@@ -143,7 +182,7 @@ function App() {
       })}
     </div>
       )} />
-      <Route path='profile' element={<Profile userData={userData} setUserData={setUserData} />} />
+      <Route path='profile' element={<Profile userData={userData} dispatchUserData={dispatchUserData} />} />
       <Route path='settings' element={<Settings/>} />
       <Route path='users'>
         <Route path=':id' element={<UserDetails users={users}/>}/>

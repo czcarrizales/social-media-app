@@ -2,8 +2,7 @@ import React from 'react'
 import '../styles/Like.css'
 
 interface Props {
-    likes:;
-    upvote:;
+
 }
 
 const Like = ({likes, upvote}) => {
