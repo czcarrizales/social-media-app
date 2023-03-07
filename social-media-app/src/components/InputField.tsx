@@ -26,9 +26,10 @@ interface Props {
         likes: string[];
         dislikes: string[];
     };
+    dispatchPosts: any;
 }
 
-const InputField = ({posts, setPosts, userData}: Props) => {
+const InputField = ({posts, setPosts, userData, dispatchPosts}: Props) => {
 
     const [content, setContent] = useState('')
 
@@ -46,7 +47,7 @@ const InputField = ({posts, setPosts, userData}: Props) => {
           dislikes: 0,
           comments: []
         }
-        setPosts([...posts, newPost])
+        dispatchPosts({type: 'addPost', payload: newPost})
         setContent('')
       }
    

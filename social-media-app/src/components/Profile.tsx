@@ -1,22 +1,23 @@
 import React, { useState, useReducer } from 'react'
 import '../styles/Profile.css'
+import ProfileDislike from './ProfileDislike';
 import ProfileLike from './ProfileLike';
 
 interface Props {
-    userData: userData;
+    userData: any;
+    dispatchUserData: any;
 }
 
-const Profile = ({userData, dispatchUserData}) => {
+const Profile = ({userData, dispatchUserData}: Props) => {
 
 
     const [editingName, setEditingName] = useState(false)
     const [nameEdit, setNameEdit] = useState(userData.name)
     const [editingLikes, setEditingLikes] = useState(false)
-    const [likeInput, setLikeInput] = useState('')
     const [addingLike, setAddingLike] = useState(false)
     const [dislikeInput, setDislikeInput] = useState('')
 
-    function handleNameEdit(e) {
+    function handleNameEdit(e: any) {
         setNameEdit(e.target.value)
     }
 
@@ -25,26 +26,9 @@ const Profile = ({userData, dispatchUserData}) => {
         setEditingName(false)
     }
 
-    function addLike() {
-        dispatchUserData({type: 'addLike', payload: likeInput})
-        setLikeInput('')
-    }
-
-    function deleteLike(value) {
-        dispatchUserData({type: 'deleteLike', payload: value})
-    }
-
-    function updateLike(index, value) {
-        dispatchUserData({type: 'updateLike', payload: {index, value}})
-    }
-
     function addDislike() {
         dispatchUserData({type: 'addDislike', payload: dislikeInput})
         setDislikeInput('')
-    }
-
-    function deleteDislike(value) {
-        dispatchUserData({type: 'deleteDislike', payload: value})
     }
 
   return (
@@ -62,10 +46,10 @@ const Profile = ({userData, dispatchUserData}) => {
             <h2>Likes</h2>
             {addingLike ? 
             <div>
-                
+
             </div> :
             <button onClick={() => setAddingLike(true)}>+</button>}
-            {userData.likes.map((like, index) => {
+            {userData.likes.map((like: any, index: number) => {
                 return <div className='all-likes'>
                     <ProfileLike like={like} index={index} dispatchUserData={dispatchUserData} />
                 </div>
@@ -78,10 +62,9 @@ const Profile = ({userData, dispatchUserData}) => {
                 <input type="text" value={dislikeInput} onChange={((e) => setDislikeInput(e.target.value))} />
                 <button onClick={addDislike}>add dislike</button>
                 </div>}
-            {userData.dislikes.map((dislike) => {
+            {userData.dislikes.map((dislike: any, index: number) => {
             return <div className='all-dislikes'>
-                <p>{dislike}</p>
-                {editingLikes && <button onClick={() => deleteDislike(dislike)}>delete</button>}
+                <ProfileDislike dislike={dislike} index={index} dispatchUserData={dispatchUserData}/>
                 </div>
         })}</div>
         </div>

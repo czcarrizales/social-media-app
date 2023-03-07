@@ -3,7 +3,7 @@ import '../styles/Dislike.css'
 
 interface Props {
     dislikes: number;
-    downvote: MouseEventHandler<HTMLDivElement>;
+    downvote: any;
 }
 
 const Dislike = ({dislikes, downvote}: Props) => {

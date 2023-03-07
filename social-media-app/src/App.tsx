@@ -10,14 +10,64 @@ import UserDetails from './components/UserDetails'
 
 function App() {
 
-  const [posts, setPosts] = useState([
+  const postsReducer = (state, action) => {
+    switch (action.type) {
+      case 'addPost':
+        return [...state, action.payload]
+      case 'updatePost':
+        return state.map((post, index) => {
+          if (index === action.payload.index) {
+            return {...post, content: action.payload.value}
+          } else {
+            return post
+          }
+        })
+      case 'deletePost':
+        return state.filter((post, index) => {
+          console.log(index)
+          return index !== action.payload
+        })
+      case 'upvotePost':
+        return state.map((post, index) => {
+          console.log(post, index)
+          if (index === action.payload) {
+            return {...post, likes: post.likes + 1}
+          } else {
+            return post
+          }
+        })
+      case 'dislikePost':
+        return state.map((post, index) => {
+          if (index === action.payload) {
+            return {...post, dislikes: post.dislikes + 1}
+          } else {
+            return post
+          }
+        })
+      case 'addComment':
+        return state.map((post, index) => {
+          if (index === action.payload.index) {
+            return {...post, comments: [...post.comments, action.payload.value]}
+          } else {
+            return post
+          }
+        })
+      default:
+        return state
+    }
+  }
+
+  const [posts, dispatchPosts] = useReducer(postsReducer, [
     {
       id: 1,
       userId: 1,
       content: 'I just got the world record in Donkey Kong!',
       likes: 0,
       dislikes: 0,
-      comments: ['Good for you!', 'Fake.', 'I do not believe you.', 'Show proof!']
+      comments: [
+        {userId: 1, comment: 'yoyo'}, 
+        {userId: 2, comment: 'bobobo'}
+      ],
     },
     {
       id: 2,
@@ -25,11 +75,9 @@ function App() {
       content: 'I just got a new dog.',
       likes: 0,
       dislikes: 0,
-      comments: ['I love dogs', 'What kind of dog?', 'Fish are better.', 'Just make sure to get their shots on time!', 'Bark.']
+      comments: [{userId: 7, comment: 'ahaha'}, {userId: 1, comment: 'LILY SHHHHHHHHUSH'}]
     }
-  ])
-
-  
+  ])  
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -102,72 +150,7 @@ function App() {
 
   useEffect(() => {
     console.log('user data changed.')
-    console.log(userData)
   }, [userData])
-
-  function upvote(id: number) {
-    const currentPostIndex = posts.findIndex((post) => post.id === id)
-    console.log(currentPostIndex)
-    const updatedPostLikes = {...posts[currentPostIndex], likes: posts[currentPostIndex].likes + 1}
-    console.log(updatedPostLikes)
-    const newPosts = [...posts]
-    newPosts[currentPostIndex] = updatedPostLikes
-    setPosts(newPosts)
-  }
-
-  function downvote(id: number) {
-    const currentPostIndex = posts.findIndex((post) => post.id === id)
-    console.log(currentPostIndex)
-    const updatedPostDislikes = {...posts[currentPostIndex], dislikes: posts[currentPostIndex].dislikes + 1}
-    console.log(updatedPostDislikes)
-    const newPosts = [...posts]
-    newPosts[currentPostIndex] = updatedPostDislikes
-    setPosts(newPosts)
-  }
-
-  function addComment(id: number, value?: string) {
-    // NOTE: You can pass the function to the child, just make sure
-    // to pass the value from child into the function. What I mean is
-    // just pass the function, you don't need to preload the arguments
-    // or paramaters from the parent
-
-    // Getting the index of the current post by it's id
-    const currentPostIndex = posts.findIndex((post) => post.id === id)
-    // Creating a copy of the posts
-    const newArray = [...posts]
-    // Creating a copy of the copied posts comments
-    const newComments = [...newArray[currentPostIndex].comments]
-    // Pushing a string into the comments copy
-    newComments.push(value)
-    // Getting a copy of the posts at the current index, and then
-    // replacing the old comments with the updated comments
-    const updatedComments = {...newArray[currentPostIndex], comments: newComments}
-    // Making sure the copied array gets the updated comments
-    newArray[currentPostIndex] = updatedComments
-    // Setting the posts to the new array of posts with updated comments
-    setPosts(newArray)
-  }
-
-  function deletePost(id) {
-    setPosts(posts.filter(post => post.id !== id))
-  }
-
-  function editPost(id, value) {
-    const editedPost = posts.map((post) => {
-      console.log(post)
-    })
-    setPosts(posts.map(post => {
-      if (post.id === id) {
-        return {...post, content: value}
-      } else {
-        return post
-      }
-    }))
-  }
-
-  function deleteLike(value) {
-    
-  }
 
   return (
     <BrowserRouter>
@@ -176,9 +159,9 @@ function App() {
       <Route path='/' element={(
         <div className="App">
       
-      <InputField posts={posts} setPosts={setPosts} userData={userData}/>
-      {posts.map((post) => {
-        return <Post id={post.id} userId={post.userId} content={post.content} likes={post.likes} dislikes={post.dislikes} comments={post.comments} upvote={() => upvote(post.id)} downvote={() => downvote(post.id)} addComment={addComment} setCommentText={setCommentText} commentText={commentText} users={users} userData={userData} deletePost={deletePost} editPost={editPost} />
+      <InputField posts={posts} userData={userData} dispatchPosts={dispatchPosts}/>
+      {posts.map((post, index) => {
+        return <Post index={index} id={post.id} userId={post.userId} content={post.content} likes={post.likes} dislikes={post.dislikes} comments={post.comments} users={users} userData={userData}  dispatchPosts={dispatchPosts} />
       })}
     </div>
       )} />

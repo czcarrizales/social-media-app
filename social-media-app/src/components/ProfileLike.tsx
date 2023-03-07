@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import '../styles/Like.css'
 
 interface Props {
-
+    like: any;
+    index: any;
+    dispatchUserData: any;
 }
 
 
 
-const ProfileLike = ({like, index, dispatchUserData}) => {
+const ProfileLike = ({like, index, dispatchUserData}: Props) => {
 
     const [likeInput, setLikeInput] = useState('')
     const [updateLikeInput, setUpdateLikeInput] = useState('')
@@ -18,11 +20,11 @@ const ProfileLike = ({like, index, dispatchUserData}) => {
         setLikeInput('')
     }
     
-    function deleteLike(value) {
+    function deleteLike(value: number) {
         dispatchUserData({type: 'deleteLike', payload: value})
     }
     
-    function updateLike(index) {
+    function updateLike(index: number) {
         dispatchUserData({type: 'updateLike', payload: {index: index, value: updateLikeInput}})
         console.log(index)
     }

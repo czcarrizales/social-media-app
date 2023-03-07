@@ -10,7 +10,7 @@ interface Props {
 
 const UserDetails = ({users}:Props) => {
     const {id} = useParams()
-    const [userDetail, setUserDetail] = useState({})
+    const [userDetail, setUserDetail] = useState<any | null>({})
 
     useEffect(() => {
         const foundUser = users.find((user) => {
@@ -19,7 +19,7 @@ const UserDetails = ({users}:Props) => {
         setUserDetail(foundUser)
     }, [])
   return (
-    <div>UserDetails {userDetail.name}</div>
+    <div>UserDetails {userDetail.name}, {userDetail.userId}</div>
   )
 }
 

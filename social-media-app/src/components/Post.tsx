@@ -2,30 +2,35 @@ import React, { useEffect } from "react";
 import "../styles/Post.css";
 import Dislike from "./Dislike";
 import Like from "./Like";
+import Comment from './Comment'
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
+  index: number;
   id: number;
+  userId: number;
   content: string;
   likes: number;
   dislikes: number;
+  comments: any;
+  addComment: any;
+  users: any;
+  userData: any;
+  dispatchPosts: any;
 }
 
 const Post = ({
+  index,
   id,
   userId,
   content,
   likes,
   dislikes,
-  upvote,
-  downvote,
   comments,
-  addComment,
   users,
   userData,
-  deletePost,
-  editPost,
+  dispatchPosts
 }: Props) => {
   const [showComments, setShowComments] = useState(true);
   const [inputText, setInputText] = useState("");
@@ -40,6 +45,36 @@ const Post = ({
 
   function handleEdit(e) {
     setEditValue(e.target.value);
+  }
+
+  function updatePost() {
+    dispatchPosts({type: 'updatePost', payload: {
+      index: index,
+      value: editValue
+    }})
+  }
+
+  function deletePost() {
+    dispatchPosts({type: 'deletePost', payload: index})
+  }
+
+  function upvotePost() {
+    dispatchPosts({type: 'upvotePost', payload: index})
+    console.log(likes)
+  }
+
+  function dislikePost() {
+    dispatchPosts({type: 'dislikePost', payload: index})
+  }
+
+  function addComment() {
+    dispatchPosts({type: 'addComment', payload: {
+      index: index,
+      value: {
+        userId: userData.userId,
+        comment: inputText
+      }
+    }})
   }
 
   useEffect(() => {
@@ -59,8 +94,8 @@ const Post = ({
           <div>{content}</div>
         </div>
         <div className="post-likes">
-          <Like likes={likes} upvote={upvote} />
-          <Dislike dislikes={dislikes} downvote={downvote} />
+          <Like index={index} likes={likes} upvote={upvotePost} dispatchPosts={dispatchPosts} />
+          <Dislike dislikes={dislikes} downvote={dislikePost} />
         </div>
       </div>
       {userData.userId === author.userId ? (
@@ -68,7 +103,7 @@ const Post = ({
           {editing ? (
             <div>
               <input type="text" value={editValue} onChange={handleEdit} />
-              <button onClick={() => {editPost(id, editValue), setEditing(!editing)}}>
+              <button onClick={() => {updatePost(), setEditing(!editing)}}>
                 finish edit
               </button>
             </div>
@@ -76,7 +111,7 @@ const Post = ({
             <button onClick={() => setEditing(!editing)}>edit</button>
           )}
 
-          <button onClick={() => deletePost(id)}>delete</button>
+          <button onClick={() => deletePost()}>delete</button>
         </div>
       ) : null}
         </div>
@@ -89,7 +124,7 @@ const Post = ({
         />
         <button
           onClick={() => {
-            addComment(id, inputText), setInputText("");
+            addComment(), setInputText("");
           }}
         >
           Comment
@@ -98,8 +133,8 @@ const Post = ({
 
       {showComments && (
         <div className="post-comments">
-          {comments.map((comment) => {
-            return <div className="single-comment">{comment}</div>;
+          {comments.map((comment: any, index: number) => {
+            return <Comment index={index} dispatchPosts={dispatchPosts} comment={comment} users={users} />;
           })}
         </div>
       )}
