@@ -1,0 +1,6 @@
+.send-chat-container {
+    background-color: blue;
+    width: 80%;
+    border: 1px solid red;
+    align-self: flex-end;
+}

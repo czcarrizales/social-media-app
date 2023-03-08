@@ -12,8 +12,8 @@ const Navbar = () => {
         <Link to={'/'}>
         <i className="fa-solid fa-house fa-xl"></i>
         </Link>
-        <Link to={'/settings'}>
-        <i className="fa-solid fa-gear fa-xl"></i>
+        <Link to={'/messages'}>
+        <i class="fa-solid fa-message fa-xl"></i>
         </Link>
         
         
