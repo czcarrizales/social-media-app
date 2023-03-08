@@ -10,14 +10,8 @@ interface Props {
 
 const ProfileDislike = ({dislike, index, dispatchUserData}: Props) => {
 
-    const [dislikeInput, setDislikeInput] = useState('')
     const [updateDislikeInput, setUpdateDislikeInput] = useState('')
     const [editingDislike, setEditingDislike] = useState(false)
-
-    function addDislike() {
-        dispatchUserData({type: 'addDislike', payload: dislikeInput})
-        setDislikeInput('')
-    }
     
     function deleteDislike(value: number) {
         dispatchUserData({type: 'deleteDislike', payload: value})
@@ -25,7 +19,6 @@ const ProfileDislike = ({dislike, index, dispatchUserData}: Props) => {
     
     function updateDislike(index: number) {
         dispatchUserData({type: 'updateDislike', payload: {index: index, value: updateDislikeInput}})
-        console.log(index)
     }
 
   return (

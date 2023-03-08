@@ -5,8 +5,10 @@ import InputField from './components/InputField'
 import Navbar from './components/Navbar'
 import Post from './components/Post'
 import Profile from './components/Profile'
-import Settings from './components/Settings'
 import UserDetails from './components/UserDetails'
+import Messages from './components/Messages'
+import SendChat from './components/SendChat'
+import RecieveChat from './components/RecieveChat'
 
 function App() {
 
@@ -106,6 +108,14 @@ function App() {
           return {...state, dislikes: state.dislikes.filter((dislike) => {
             return dislike !== action.payload
           })}
+        case 'updateDislike':
+          return {...state, dislikes: state.dislikes.map((dislike, index) => {
+            if (index == action.payload.index) {
+              return action.payload.value
+            } else {
+              return dislike
+            }
+          })}
         default:
             return state
     }
@@ -119,6 +129,32 @@ function App() {
     dislikes: ['spiders', 'procrastinating', 'big ol bullies', 'tequila']
   })
 
+  const userMessagesReducer = (state, action) => {
+    switch (action.type) {
+      case 'sendMessage':
+        return [...state, action.payload]
+      default:
+        return state
+    }
+  }
+
+  const [userMessages, dispatchUserMessages] = useReducer(userMessagesReducer, [
+    {userId: 3,
+    message: 'This job search is so difficult. I get so discouraged easily!'},
+    {userId: 7,
+    message: "I wouldn't worry about it too much. Just keep practicing and applying. You'll get there eventually!"},
+    {userId: 3,
+    message: "I just wish I had a better perspective on how to go about things..."},
+    {userId: 7,
+    message: "Yeah, it's very hard, especially when you're trying to break through as an entry level. I understand, I've been there before."},
+    {userId: 3,
+    message: "You seem to have a good head on your shoulders about these kinds of things."},
+    {userId: 3,
+    message: "What advice could you give me?"},
+    {userId: 7,
+    message: "Well..."}
+  ])
+
   
 
   const [users, setUsers] = useState([
@@ -131,8 +167,12 @@ function App() {
       name: 'Lily'
     },
     {
+      userId: 3,
+      name: 'Cheese'
+    },
+    {
       userId: 7,
-      name: 'User'
+      name: userData.name
     }
   ])
 
@@ -166,7 +206,7 @@ function App() {
     </div>
       )} />
       <Route path='profile' element={<Profile userData={userData} dispatchUserData={dispatchUserData} />} />
-      <Route path='settings' element={<Settings/>} />
+      <Route path='messages' element={<Messages userData={userData} userMessages={userMessages} dispatchUserMessages={dispatchUserMessages} users={users}/>} />
       <Route path='users'>
         <Route path=':id' element={<UserDetails users={users}/>}/>
       </Route>

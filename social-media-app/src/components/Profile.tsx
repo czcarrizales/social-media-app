@@ -13,8 +13,9 @@ const Profile = ({userData, dispatchUserData}: Props) => {
 
     const [editingName, setEditingName] = useState(false)
     const [nameEdit, setNameEdit] = useState(userData.name)
-    const [editingLikes, setEditingLikes] = useState(false)
     const [addingLike, setAddingLike] = useState(false)
+    const [likeInput, setLikeInput] = useState('')
+    const [addingDislike, setAddingDislike] = useState(false)
     const [dislikeInput, setDislikeInput] = useState('')
 
     function handleNameEdit(e: any) {
@@ -26,9 +27,17 @@ const Profile = ({userData, dispatchUserData}: Props) => {
         setEditingName(false)
     }
 
+    function addLike() {
+        dispatchUserData({type: 'addLike', payload: likeInput})
+        setLikeInput('')
+        setAddingLike(false)
+    }
+
     function addDislike() {
         dispatchUserData({type: 'addDislike', payload: dislikeInput})
         setDislikeInput('')
+        setAddingDislike(false)
+
     }
 
   return (
@@ -46,8 +55,9 @@ const Profile = ({userData, dispatchUserData}: Props) => {
             <h2>Likes</h2>
             {addingLike ? 
             <div>
-
-            </div> :
+            <input type="text" value={likeInput} onChange={(e) => setLikeInput(e.target.value)}/>
+            <button onClick={addLike}>add like</button>
+        </div> :
             <button onClick={() => setAddingLike(true)}>+</button>}
             {userData.likes.map((like: any, index: number) => {
                 return <div className='all-likes'>
@@ -57,11 +67,12 @@ const Profile = ({userData, dispatchUserData}: Props) => {
         </div>
         <div className='profile-dislikes'>
             <h2>Dislikes</h2>
-            <button onClick={() => setEditingLikes(!editingLikes)}>edit likes</button>
-            {editingLikes && <div>
-                <input type="text" value={dislikeInput} onChange={((e) => setDislikeInput(e.target.value))} />
+            {addingDislike ? 
+            <div>
+                <input type="text" value={dislikeInput} onChange={(e) => setDislikeInput(e.target.value)}/>
                 <button onClick={addDislike}>add dislike</button>
-                </div>}
+            </div> :
+            <button onClick={() => setAddingDislike(true)}>+</button>}
             {userData.dislikes.map((dislike: any, index: number) => {
             return <div className='all-dislikes'>
                 <ProfileDislike dislike={dislike} index={index} dispatchUserData={dispatchUserData}/>
