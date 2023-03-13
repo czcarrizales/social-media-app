@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../styles/Like.css'
+import '../styles/ProfileLike.css'
 
 interface Props {
     like: any;
@@ -35,9 +35,10 @@ const ProfileLike = ({like, index, dispatchUserData}: Props) => {
         <button onClick={() => setEditingLike(!editingLike)}>edit</button>
             {editingLike && <div>
                         <input onChange={(e) => setUpdateLikeInput(e.target.value)} type="text" value={updateLikeInput} />
-                        <button onClick={() => {updateLike(index), setEditingLike(false)}}>update like</button>
+                        <button onClick={() => {updateLike(index), setEditingLike(false)}}>update</button>
+                        {editingLike && <button className='delete' onClick={() => deleteLike(like)}>delete</button>}
                     </div>}
-                    {editingLike && <button onClick={() => deleteLike(like)}>delete</button>}
+                    
        
     </div>
   )
