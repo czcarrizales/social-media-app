@@ -168,7 +168,7 @@ function App() {
     },
     {
       userId: 3,
-      name: 'Cheese'
+      name: 'Bob'
     },
     {
       userId: 7,

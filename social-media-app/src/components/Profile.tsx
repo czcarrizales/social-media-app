@@ -58,7 +58,7 @@ const Profile = ({userData, dispatchUserData}: Props) => {
             <input type="text" value={likeInput} onChange={(e) => setLikeInput(e.target.value)}/>
             <button onClick={addLike}>add like</button>
         </div> :
-            <button onClick={() => setAddingLike(true)}>+</button>}
+            <button className='add-button' onClick={() => setAddingLike(true)}>+</button>}
             {userData.likes.map((like: any, index: number) => {
                 return <div className='all-likes'>
                     <ProfileLike like={like} index={index} dispatchUserData={dispatchUserData} />
@@ -72,7 +72,7 @@ const Profile = ({userData, dispatchUserData}: Props) => {
                 <input type="text" value={dislikeInput} onChange={(e) => setDislikeInput(e.target.value)}/>
                 <button onClick={addDislike}>add dislike</button>
             </div> :
-            <button onClick={() => setAddingDislike(true)}>+</button>}
+            <button className='add-button' onClick={() => setAddingDislike(true)}>+</button>}
             {userData.dislikes.map((dislike: any, index: number) => {
             return <div className='all-dislikes'>
                 <ProfileDislike dislike={dislike} index={index} dispatchUserData={dispatchUserData}/>

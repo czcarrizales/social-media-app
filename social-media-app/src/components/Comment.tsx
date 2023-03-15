@@ -29,9 +29,9 @@ const Comment = ({index, comment, users}: Props) => {
     }, [])
   return (
     <div className='single-comment'>
-        <Link to={`/users/${comment.userId}`}>
+    
             <h3>{commentAuthor}</h3>
-        </Link>
+        
         <p>{comment.comment}</p>
         <Like likes={commentLikes} upvote={upvoteComment} />
     </div>

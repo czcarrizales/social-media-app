@@ -90,7 +90,7 @@ const Post = ({
         <div className="post-details">
         <div className="post-top">
         <div className="post-content">
-          <Link to={`/users/${userId}`}><h2>{author.name}</h2></Link>
+          <h2>{author.name}</h2>
           <div>{content}</div>
         </div>
         <div className="post-likes">
