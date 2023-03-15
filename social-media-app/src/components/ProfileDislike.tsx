@@ -26,12 +26,15 @@ const ProfileDislike = ({dislike, index, dispatchUserData}: Props) => {
 
   return (
     <div className='dislike-container'>
+        <div className='main-dislike-container'>
         <p>{dislike}</p>
         <button className='edit-button' onClick={() => setEditingDislike(!editingDislike)}>edit</button>
-            {editingDislike && <div>
+        </div>
+        
+            {editingDislike && <div className='edit-dislike-container'>
                         <input onChange={(e) => setUpdateDislikeInput(e.target.value)} type="text" value={updateDislikeInput} />
-                        <button onClick={() => {updateDislike(index), setEditingDislike(false)}}>update</button>
-                        {editingDislike && <button className='delete' onClick={() => deleteDislike(dislike)}>delete</button>}
+                        <button className='update-button' onClick={() => {updateDislike(index), setEditingDislike(false)}}>update</button>
+                        <button className='delete-button' onClick={() => deleteDislike(dislike)}>delete</button>
                     </div>}
                     
        

@@ -5,39 +5,45 @@
     padding: 1em;
 }
 
+.profile-image-container {
+
+}
+
 .profile-details {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .profile-likes {
-    width: 50%;
-}
-
-.all-likes p {
-    margin-top: 1em;
+    width: 45%;
+    max-width: 250px;
+    align-self: flex-start;
 }
 
 .profile-dislikes {
-    width: 50%;
+    width: 45%;
+    max-width: 250px;
+    align-self: flex-start;
 }
 
-.profile-container img {
+.profile-picture {
     width: 100%;
+    max-width: 250px;
     margin-top: 2em;
     border-radius: 50px;
     border: 2px solid black;
 }
 
-.profile-container .edit-name {
+.edit-button {
     border: none;
     border-radius: 5px;
-    padding: .4em;
-    background-color: brown;
+    padding: .2em;
+    background-color: rgb(141, 141, 141);
     color: white;
 }
 
-.edit-button {
+.edit-name-button {
     border: none;
     border-radius: 5px;
     padding: .2em;
@@ -45,10 +51,40 @@
     color: white;
 }
 
+.edit-button:hover {
+    cursor: pointer;
+}
+
 .add-button {
-    padding: .4em;
+    padding: .2em .4em;
     background-color: green;
     color: white;
     border: none;
     border-radius: 5px;
+}
+
+.add-button:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 1000px) {
+    .profile-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .profile-image-container {
+        width: 50%;
+    }
+
+    .profile-picture {
+        max-width: 500px;
+    }
+
+    .profile-details {
+        width: 50%;
+        justify-content: space-around;
+    }
+
 }

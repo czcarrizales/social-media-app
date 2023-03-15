@@ -35,12 +35,14 @@ const ProfileLike = ({like, index, dispatchUserData}: Props) => {
 
   return (
     <div className='like-container'>
-         {like}
+        <div className='main-like-container'>
+        <p className='single-like'>{like}</p>
         <button className='edit-button' onClick={() => setEditingLike(!editingLike)}>edit</button>
-            {editingLike && <div>
+        </div>
+            {editingLike && <div className='edit-like-container'>
                         <input onChange={(e) => setUpdateLikeInput(e.target.value)} type="text" value={updateLikeInput} />
-                        <button onClick={() => {updateLike(index), setEditingLike(false)}}>update</button>
-                        {editingLike && <button className='delete' onClick={() => deleteLike(like)}>delete</button>}
+                        <button className='update-button' onClick={() => {updateLike(index), setEditingLike(false)}}>update</button>
+                        <button className='delete-button' onClick={() => deleteLike(like)}>delete</button>
                     </div>}
                     
        

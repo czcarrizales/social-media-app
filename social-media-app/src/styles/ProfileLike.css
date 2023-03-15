@@ -1,20 +1,40 @@
-.like-container {
+.like-container input {
+    margin-top: .5em;
+}
+
+.main-like-container {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-top: 1em;
 }
 
-.like-container button {
-    padding: .2em .4em;
-    margin-top: .5em;
+.single-like {
 }
 
-.like-container input {
-    margin-top: .5em;
+.edit-like-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.like-container .delete {
+.edit-button {
     margin-left: 1em;
+}
+
+.update-button {
+    margin-top: 1em;
+    border: none;
+    border-radius: 5px;
+    padding: .5em;
+    background-color: yellow;
+    color: black;
+}
+
+.delete-button {
+    margin-top: 1em;
+    border: none;
+    border-radius: 5px;
+    padding: .5em;
+    background-color: red;
+    color: white;
 }

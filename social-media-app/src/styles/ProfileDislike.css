@@ -1,20 +1,38 @@
 .dislike-container {
+    
+}
+
+.main-dislike-container {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-top: 1em;
 }
 
-.dislike-container button {
-    padding: .2em .4em;
-    margin-top: .5em;
-}
 
 .dislike-container input {
     margin-top: .5em;
 }
 
-.dislike-container .delete {
-    margin-left: 1em;
+.edit-dislike-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-button {
+    margin-top: 1em;
+    border: none;
+    border-radius: 5px;
+    padding: .2em;
+    background-color: yellow;
+    color: black;
+}
+
+.delete-button {
+    margin-top: 1em;
+    border: none;
+    border-radius: 5px;
+    padding: .2em;
+    background-color: red;
+    color: white;
 }
