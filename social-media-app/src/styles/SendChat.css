@@ -1,6 +1,8 @@
 .send-chat-container {
-    background-color: blue;
-    width: 80%;
-    border: 1px solid red;
+    background-color: hwb(240 0% 0%);
     align-self: flex-end;
+    width: 75%;
+    padding: 1em;
+    border-radius: 20px;
+    color: white;
 }

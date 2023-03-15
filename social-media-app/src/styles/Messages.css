@@ -1,16 +1,17 @@
 .messages-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid green;
 }
 .messages-container h1 {
     text-align: center;
 }
 
 .messages-container div {
-    margin-top: 1em;
+    margin-top: .7em;
 }
 
 .messages-container-send {
     align-self: flex-end;
+    border: 1px solid green;
+    padding: 1em;
 }

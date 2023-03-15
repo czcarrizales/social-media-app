@@ -1,7 +1,8 @@
 .profile-container {
     text-align: center;
     background-color: white;
-    border: 1px solid red;
+    border-radius: 30px;
+    padding: 1em;
 }
 
 .profile-details {
@@ -23,13 +24,31 @@
 
 .profile-container img {
     width: 100%;
+    margin-top: 2em;
+    border-radius: 50px;
+    border: 2px solid black;
 }
 
 .profile-container .edit-name {
-    width: 15%;
+    border: none;
+    border-radius: 5px;
+    padding: .4em;
+    background-color: brown;
+    color: white;
+}
+
+.edit-button {
     border: none;
     border-radius: 5px;
     padding: .2em;
     background-color: brown;
     color: white;
+}
+
+.add-button {
+    padding: .4em;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
