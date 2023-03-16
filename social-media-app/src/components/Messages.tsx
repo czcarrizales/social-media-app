@@ -3,7 +3,14 @@ import '../styles/Messages.css'
 import SendChat from './SendChat'
 import RecieveChat from './RecieveChat'
 
-const Messages = ({dispatchUserMessages, userMessages, userData, users}) => {
+interface Props {
+  dispatchUserMessages: any;
+  userMessages: any;
+  userData: any;
+  users: any;
+}
+
+const Messages = ({dispatchUserMessages, userMessages, userData, users}: Props) => {
 
   const [messageInput, setMessageInput] = useState('')
 
@@ -15,14 +22,14 @@ const Messages = ({dispatchUserMessages, userMessages, userData, users}) => {
     setMessageInput('')
   }
 
-  function handleChange(e) {
+  function handleChange(e: any) {
     setMessageInput(e.target.value)
   }
 
   return (
     <div className='messages-container'>
       <h1>Messages</h1>
-      {userMessages.map((message) => {
+      {userMessages.map((message: any) => {
         if (message.userId === userData.userId) {
           return <SendChat message={message} users={users} />
         } else {
