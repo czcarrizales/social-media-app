@@ -13,7 +13,7 @@ const Navbar = () => {
         <i className="fa-solid fa-house fa-xl"></i>
         </Link>
         <Link to={'/messages'}>
-        <i class="fa-solid fa-message fa-xl"></i>
+        <i className="fa-solid fa-message fa-xl"></i>
         </Link>
         
         

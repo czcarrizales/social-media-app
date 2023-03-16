@@ -7,8 +7,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
-  index: number;
-  id: number;
+  index: any;
+  id: any;
   userId: number;
   content: string;
   likes: number;
@@ -36,14 +36,14 @@ const Post = ({
   const [inputText, setInputText] = useState("");
   const [editValue, setEditValue] = useState(content);
   const [editing, setEditing] = useState(false);
-  const [author, setAuthor] = useState({});
+  const [author, setAuthor]: Array<any> = useState({});
 
-  function handleChange(e) {
+  function handleChange(e: any) {
     setInputText(e.target.value);
     console.log(inputText);
   }
 
-  function handleEdit(e) {
+  function handleEdit(e: any) {
     setEditValue(e.target.value);
   }
 
@@ -78,7 +78,7 @@ const Post = ({
   }
 
   useEffect(() => {
-    users.filter((user) => {
+    users.filter((user: any) => {
       if (user.userId === userId) {
         setAuthor(user);
       }
@@ -108,10 +108,10 @@ const Post = ({
               </button>
             </div>
           ) : (
-            <button onClick={() => setEditing(!editing)}>edit</button>
+            <button className="post-edit-button" onClick={() => setEditing(!editing)}>edit</button>
           )}
 
-          <button onClick={() => deletePost()}>delete</button>
+          <button className="post-delete-button" onClick={() => deletePost()}>delete</button>
         </div>
       ) : null}
         </div>

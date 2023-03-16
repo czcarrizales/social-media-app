@@ -1,11 +1,19 @@
 import React from 'react'
 import '../styles/SendChat.css'
 
-const SendChat = ({message, users}) => {
+interface Props {
+  message: any;
+  users: any;
+}
+
+const SendChat = ({message, users}: Props) => {
   return (
     <div className='send-chat-container'>
-        <h2>{users.map(user => user.userId === message.userId ? user.name : null)}</h2>
+      <div className='send-chat-content'>
+      <h2>{users.map((user: { userId: any; name: any; }) => user.userId === message.userId ? user.name : null)}</h2>
         <p>{message.message}</p>
+      </div>
+        
     </div>
   )
 }

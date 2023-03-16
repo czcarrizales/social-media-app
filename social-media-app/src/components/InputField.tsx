@@ -11,14 +11,6 @@ interface Props {
         dislikes: number;
         comments: string[];
     }[];
-    setPosts: React.Dispatch<React.SetStateAction<{
-        id: number;
-        userId: number;
-        content: string;
-        likes: number;
-        dislikes: number;
-        comments: string[];
-    }[]>>;
     userData: {
         name: string;
         userId: number;
@@ -29,7 +21,7 @@ interface Props {
     dispatchPosts: any;
 }
 
-const InputField = ({posts, setPosts, userData, dispatchPosts}: Props) => {
+const InputField = ({posts, userData, dispatchPosts}: Props) => {
 
     const [content, setContent] = useState('')
 

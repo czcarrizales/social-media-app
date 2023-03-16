@@ -12,12 +12,12 @@ import RecieveChat from './components/RecieveChat'
 
 function App() {
 
-  const postsReducer = (state, action) => {
+  const postsReducer = (state: any, action: any) => {
     switch (action.type) {
       case 'addPost':
         return [...state, action.payload]
       case 'updatePost':
-        return state.map((post, index) => {
+        return state.map((post: any, index: any) => {
           if (index === action.payload.index) {
             return {...post, content: action.payload.value}
           } else {
@@ -25,12 +25,12 @@ function App() {
           }
         })
       case 'deletePost':
-        return state.filter((post, index) => {
+        return state.filter((post: any, index: any) => {
           console.log(index)
           return index !== action.payload
         })
       case 'upvotePost':
-        return state.map((post, index) => {
+        return state.map((post: any, index: any) => {
           console.log(post, index)
           if (index === action.payload) {
             return {...post, likes: post.likes + 1}
@@ -39,7 +39,7 @@ function App() {
           }
         })
       case 'dislikePost':
-        return state.map((post, index) => {
+        return state.map((post: any, index: any) => {
           if (index === action.payload) {
             return {...post, dislikes: post.dislikes + 1}
           } else {
@@ -47,7 +47,7 @@ function App() {
           }
         })
       case 'addComment':
-        return state.map((post, index) => {
+        return state.map((post: any, index: number) => {
           if (index === action.payload.index) {
             return {...post, comments: [...post.comments, action.payload.value]}
           } else {
@@ -81,18 +81,18 @@ function App() {
     }
   ])  
 
-  const reducer = (state, action) => {
+  const reducer = (state: any, action: any) => {
     switch (action.type) {
         case 'setName' :
           return {...state, name: action.payload}
         case 'addLike' :
           return {...state, likes: [...state.likes, action.payload]}
         case 'deleteLike' :
-          return {...state, likes: state.likes.filter((like) => {
+          return {...state, likes: state.likes.filter((like: any) => {
             return like !== action.payload
           })}
         case 'updateLike' :
-          return {...state, likes: state.likes.map((like, index) => {
+          return {...state, likes: state.likes.map((like: any, index: number) => {
             if (index == action.payload.index) {
               console.log(index)
               console.log(action.payload.index)
@@ -105,11 +105,11 @@ function App() {
         case 'addDislike':
           return {...state, dislikes: [...state.dislikes, action.payload]}
         case 'deleteDislike':
-          return {...state, dislikes: state.dislikes.filter((dislike) => {
+          return {...state, dislikes: state.dislikes.filter((dislike: any) => {
             return dislike !== action.payload
           })}
         case 'updateDislike':
-          return {...state, dislikes: state.dislikes.map((dislike, index) => {
+          return {...state, dislikes: state.dislikes.map((dislike: any, index: number) => {
             if (index == action.payload.index) {
               return action.payload.value
             } else {
@@ -129,7 +129,7 @@ function App() {
     dislikes: ['spiders', 'procrastinating', 'big ol bullies', 'tequila']
   })
 
-  const userMessagesReducer = (state, action) => {
+  const userMessagesReducer = (state: any, action: any) => {
     switch (action.type) {
       case 'sendMessage':
         return [...state, action.payload]
@@ -200,9 +200,12 @@ function App() {
         <div className="App">
       
       <InputField posts={posts} userData={userData} dispatchPosts={dispatchPosts}/>
-      {posts.map((post, index) => {
-        return <Post index={index} id={post.id} userId={post.userId} content={post.content} likes={post.likes} dislikes={post.dislikes} comments={post.comments} users={users} userData={userData}  dispatchPosts={dispatchPosts} />
+      <div className='all-posts'>
+      {posts.map((post: any, index: any) => {
+        return <Post index={index} id={post.id} userId={post.userId} content={post.content} likes={post.likes} dislikes={post.dislikes} comments={post.comments} users={users} userData={userData} dispatchPosts={dispatchPosts} addComment={undefined} />
       })}
+      </div>
+      
     </div>
       )} />
       <Route path='profile' element={<Profile userData={userData} dispatchUserData={dispatchUserData} />} />

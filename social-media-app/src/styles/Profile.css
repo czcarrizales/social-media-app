@@ -5,10 +5,6 @@
     padding: 1em;
 }
 
-.profile-image-container {
-
-}
-
 .profile-details {
     display: flex;
     justify-content: space-between;
@@ -72,6 +68,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .profile-image-container {

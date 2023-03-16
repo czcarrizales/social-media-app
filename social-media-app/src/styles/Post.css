@@ -1,12 +1,13 @@
 .post-container {
-    margin-top: 2em;
     border-radius: 20px;
+    max-width: 500px;
+    margin: 2em auto 0;
+    width: 100%;
 }
 
 .post-container h2, a {
     text-decoration: none;
     color: black;
-    text-align: center;
 }
 
 .post-details {
@@ -17,14 +18,14 @@
 
 .post-top {
     display: flex;
+    justify-content: space-between;
+    margin: 0 2em;
 }
 
 .post-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 80%;
 }
 
 .post-likes {
@@ -42,13 +43,14 @@
 
 .add-comment-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     margin-top: 1em;
 }
 
 .add-comment-container input {
     border: 1px solid rgb(205, 205, 205);
     border-radius: 5px;
+    margin-right: 1em;
 }
 
 .add-comment-container button {
@@ -56,4 +58,20 @@
     border: none;
     padding: .5em 1em;
     border-radius: 5px;
+}
+
+.post-edit-button {
+    border: none;
+        border-radius: 5px;
+        padding: .2em;
+        background-color: rgb(189, 189, 189);
+        color: black;
+}
+
+.post-delete-button {
+        border: none;
+        border-radius: 5px;
+        padding: .2em;
+        background-color: brown;
+        color: white;
 }

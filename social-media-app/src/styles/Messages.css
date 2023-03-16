@@ -1,6 +1,8 @@
 .messages-container {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    max-width: 500px;
 }
 .messages-container h1 {
     text-align: center;
@@ -13,4 +15,18 @@
 .messages-container-send {
     align-self: flex-end;
     padding: 1em;
+}
+
+.messages-container-send input {
+    border: 1px solid rgb(205, 205, 205);
+    border-radius: 5px;
+    margin-right: 1em;
+    padding: 1em;
+}
+
+.messages-container-send button {
+    background-color: rgb(255, 252, 74);
+    border: none;
+    padding: 1em 2em;
+    border-radius: 5px;
 }

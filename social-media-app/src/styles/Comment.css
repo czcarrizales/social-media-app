@@ -1,11 +1,15 @@
 .single-comment {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
     margin-top: .5em;
     border-radius: 20px;
     background-color: white;
-    padding: .25em;
     width: 90%;
+    max-width: 500px;
+    padding: .3em;
+}
+
+.single-comment-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 2em;
 }
