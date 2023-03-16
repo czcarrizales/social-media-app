@@ -67,17 +67,17 @@ function App() {
       likes: 0,
       dislikes: 0,
       comments: [
-        {userId: 1, comment: 'yoyo'}, 
-        {userId: 2, comment: 'bobobo'}
+        {userId: 1, comment: 'Fake.'}, 
+        {userId: 2, comment: 'Show proof... Now.'}
       ],
     },
     {
       id: 2,
       userId: 2,
-      content: 'I just got a new dog.',
+      content: 'I got a new dog!',
       likes: 0,
       dislikes: 0,
-      comments: [{userId: 7, comment: 'ahaha'}, {userId: 1, comment: 'LILY SHHHHHHHHUSH'}]
+      comments: [{userId: 7, comment: 'Congrats.'}, {userId: 1, comment: 'Adorable!'}]
     }
   ])  
 
@@ -126,7 +126,7 @@ function App() {
     userId: 7,
     image: 'images/doggy.jpg',
     likes: ['gaming', 'coding', 'reading', 'running'],
-    dislikes: ['spiders', 'procrastinating', 'big ol bullies', 'tequila']
+    dislikes: ['spiders', 'procrastinating', 'salads', 'tequila']
   })
 
   const userMessagesReducer = (state: any, action: any) => {
