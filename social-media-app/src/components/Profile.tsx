@@ -54,6 +54,12 @@ const Profile = ({ userData, dispatchUserData }: Props) => {
         </button>
       </div>
       <div className="profile-details">
+        <div className="profile-about">
+          <h2>About Me</h2>
+          <div>
+            <p>This is a section that is about me. I am currently just testing this out to see how it will look. Yadda yadda yadda. Woot woot.</p>
+          </div>
+        </div>
         <div className="profile-likes">
           <h2>Likes</h2>
           {addingLike ? (
